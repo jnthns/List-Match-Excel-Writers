@@ -16,7 +16,7 @@ import os
 
 # Match filename
 #f = "DME_Output_Duplicates_Column.csv"
-f = 'Pega - ORG Domain Match - AWL - 090518 V3_2018-09-05_130480_output.csv'
+f = 'Nikko AM Q4_2018-09-06_130683_output.csv'
 
 # Create dataframe for entire match file to obtain number of columns(length).
 matchfile_df = pd.read_csv(f, skiprows=None)
@@ -80,7 +80,9 @@ duplicates_df = duplicates_df.drop(columns = ['active', 'Match Result', 'Source 
 ### WRITE XLSX
 
 # Excel filename
-f2 = 'Pega - ORG Domain Match - AWL - 090518 V3_2018-09-05_130480_output.xlsx'
+f2 = 'Nikko AM Q4_2018-09-06_130683_output.xlsx'
+
+os.chdir('/Users/jshek/Desktop/completedxls')
 
 writer = pd.ExcelWriter(f2, engine = 'xlsxwriter')
 reachable_df.to_excel(writer, sheet_name = 'Reachable', index = False)
