@@ -11,7 +11,7 @@ sys.setdefaultencoding('utf8')
 ### READ CSV 
 
 # Match filename
-f = "Synopsys_EMEA_List Match_2018-06-22_125743_output.csv"
+f = "Lithium EMEA Ads_2018-08-29_130178_output (1).csv"
 
 # Create dataframe for entire match file to obtain number of columns(length).
 matchfile_df = pd.read_csv(f, skiprows=None)
@@ -19,7 +19,7 @@ length = len(matchfile_df.columns)
 
 # Select column ranges to include:
 # Source Name, Match Result, Match Type, Best SID, Account, Country Code, MEI
-range1 = [0,1,2,4,7,8,9,10,19,20,28]
+range1 = [0,1,2,4,7,8,9,10,14,19,20,21,28, 31]
 
 # Range for all custom attribute columns
 range2 = range(35,length)
@@ -97,7 +97,7 @@ duplicates_df = duplicates_df.drop(columns = ['active', 'Match Type', 'Match Res
 ### WRITE XLSX
 
 # Excel filename
-f2 = 'Synopsys_EMEA_List_Match_account_recomendations_625.xlsx'
+f2 = 'Lithium_EMEA_Ads_account_recomendations_829.xlsx'
 
 writer = pd.ExcelWriter(f2, engine = 'xlsxwriter')
 reachable_df.to_excel(writer, sheet_name = 'Reachable', index = False)
