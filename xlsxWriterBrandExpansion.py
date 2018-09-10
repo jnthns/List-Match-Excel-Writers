@@ -5,16 +5,16 @@
 ### into the variable 'f2' below.
 
 import pandas as pd
-import sys  
+# import sys  
 
 # Changed default string encoding from 'ascii' to 'utf8'
-reload(sys)  
-sys.setdefaultencoding('utf8')
+# reload(sys)  
+# sys.setdefaultencoding('utf8')
 
 ### READ CSV 
 
 # Match filename
-f = "CRE_Universe_AccountWatch_2018-06-19_125386_output.csv"
+f = "Spark Agent List Match_2018-09-10_130859_output.csv"
 
 # Create dataframe for entire match file to obtain number of columns(length).
 matchfile_df = pd.read_csv(f, skiprows=None)
@@ -65,7 +65,7 @@ duplicates_df = duplicates_df.drop(columns = ['active', 'Match Type', 'Match Res
 ### WRITE XLSX
 
 # Excel filename
-f2 = 'CRE_Universe_AccountWatch_account_recomendations_620.xlsx'
+f2 = 'Spark Agent List Match_2018-09-10_130859_output.xlsx'
 
 writer = pd.ExcelWriter(f2, engine = 'xlsxwriter')
 reachable_df.to_excel(writer, sheet_name = 'Reachable', index = False)
