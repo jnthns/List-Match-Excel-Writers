@@ -16,7 +16,7 @@ import os
 
 # Match filename
 #f = "DME_Output_Duplicates_Column.csv"
-f = 'Nikko AM Q4_2018-09-06_130683_output.csv'
+f = 'Spark Agent List State Match 9.11.18_2018-09-11_131008_output.csv'
 
 # Create dataframe for entire match file to obtain number of columns(length).
 matchfile_df = pd.read_csv(f, skiprows=None)
@@ -68,10 +68,11 @@ duplicates_df = df[((df['Match Type'] == 'duplicate input') | (df['Match Type'] 
 
 
 # Drop unwanted columns in each dataframe
-reachable_df = reachable_df.drop(columns = ['active', 'Match Result', 'Source State', 'Country Name'])
-not_reachable_df = not_reachable_df.drop(columns = ['active', 'Match Result', 'Source State', 'Country Name'])
-no_match_df = no_match_df.drop(columns = ['active', 'Match Result', 'Source State', 'Country Name'])
-duplicates_df = duplicates_df.drop(columns = ['active', 'Match Result', 'Source State', 'Country Name'])
+cols = ['active', 'Match Result', 'Source State', 'Country Name']
+reachable_df = reachable_df.drop(columns = cols)
+not_reachable_df = not_reachable_df.drop(columns = cols)
+no_match_df = no_match_df.drop(columns = cols)
+duplicates_df = duplicates_df.drop(columns = cols)
 #filtered_df = filtered_df.drop(columns = ['active', 'Match Type', 'Match Result', 'Source State', 'Country Name', 'duplicate'])
 #vid_df = vid_df.drop(columns = ['active', 'Match Type', 'Match Result', 'Source State', 'Country Name', 'duplicate'])
 
@@ -80,7 +81,7 @@ duplicates_df = duplicates_df.drop(columns = ['active', 'Match Result', 'Source 
 ### WRITE XLSX
 
 # Excel filename
-f2 = 'Nikko AM Q4_2018-09-06_130683_output.xlsx'
+f2 = 'Spark Agent List State Match 9.11.18_2018-09-11_131008_output.xlsx'
 
 os.chdir('/Users/jshek/Desktop/completedxls')
 
