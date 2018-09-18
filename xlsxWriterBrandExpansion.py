@@ -58,10 +58,11 @@ duplicates_df = df[((df['Match Type'] == 'duplicate input') | (df['Match Type'] 
 
 
 # Drop unwanted columns in each dataframe
-reachable_df = reachable_df.drop(columns = ['active', 'Match Type', 'Match Result'])
-not_reachable_df = not_reachable_df.drop(columns = ['active', 'Match Type', 'Match Result'])
-no_match_df = no_match_df.drop(columns = ['active', 'Match Type', 'Match Result'])
-duplicates_df = duplicates_df.drop(columns = ['active', 'Match Type', 'Match Result'])
+cols = ['active', 'Match Type', 'Match Result']
+reachable_df = reachable_df.drop(columns = cols)
+not_reachable_df = not_reachable_df.drop(columns = cols)
+no_match_df = no_match_df.drop(columns = cols)
+duplicates_df = duplicates_df.drop(columns = cols)
 
 #----------------------------------------------------------------------------------------------------------------------
 
