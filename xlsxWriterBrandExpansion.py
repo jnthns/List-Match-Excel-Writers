@@ -14,7 +14,7 @@ import pandas as pd
 ### READ CSV 
 
 # Match filename
-f = "DigitalGlobe-Addtl Ads Accounts No Geo Restrictions_2018-09-18_131574_output.csv"
+f = "Autodesk FY19 PDM Target Accounts _2018-09-17_131478_output.csv"
 
 # Create dataframe for entire match file to obtain number of columns(length).
 matchfile_df = pd.read_csv(f, skiprows=None)
@@ -22,7 +22,7 @@ length = len(matchfile_df.columns)
 
 # Select column ranges to include:
 # Source Name, Match Result, Match Type, Best SID, Account, Country Code, MEI
-range1 = [0,1,2,4,7,8,12,13,17,22,23,24,30]
+range1 = [0,1,2,7,8,12,13,17,22,23,24,30]
 
 # Range for all custom attribute columns
 range2 = list(range(37,length))
@@ -41,11 +41,11 @@ df = pd.read_csv(f, skiprows=None, usecols=cols)
 # Remove rows with 'active' == 'False' from reachable and not reachable
 
 # Create 'reachable' dataframe for 'MEI' >= 25 and 'active' == True
-reachable_df = df[(df['MEI'] >= 25) & (df['active'] == True)]
+reachable_df = df[(df['MEI'] >= 20) & (df['active'] == True)]
 reachable_df = reachable_df.sort_values(by=['MEI'], ascending=False)
 
 # Create 'Not_Reachable' dataframe for 'MEI' < 25 and 'active' == True
-not_reachable_df = df[(df['MEI'] < 25) & (df['active'] == True)]
+not_reachable_df = df[(df['MEI'] < 20) & (df['active'] == True)]
 not_reachable_df = not_reachable_df.sort_values(by=['MEI'], ascending=False)
 
 # Create 'No_Match' dataframe for rows that require manual scrubbing
@@ -69,11 +69,13 @@ duplicates_df = duplicates_df.drop(columns = cols)
 ### WRITE XLSX
 
 # Excel filename
-f2 = 'DigitalGlobe-Addtl Ads Accounts No Geo Restrictions_2018-09-18_131574_output.xlsx'
+f2 = 'Autodesk FY19 PDM Target Accounts _2018-09-17_131478_output.xlsx'
+
+os.chdir('/Users/jshek/Desktop/completedxls')
 
 writer = pd.ExcelWriter(f2, engine = 'xlsxwriter')
 reachable_df.to_excel(writer, sheet_name = 'Reachable', index = False)
 not_reachable_df.to_excel(writer, sheet_name = 'Not Reachable', index = False)
 no_match_df.to_excel(writer, sheet_name = 'No Match', index = False)
-#duplicates_df.to_excel(writer, sheet_name = 'Duplicates', index = False)
+duplicates_df.to_excel(writer, sheet_name = 'Duplicates', index = False)
 writer.save()
