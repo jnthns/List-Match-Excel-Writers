@@ -16,10 +16,10 @@ colnames = pos + pos2
 final = pd.read_csv('Athena RFP CHS Audience_2018-09-06_130621_output.csv', usecols=colnames)
 
 # Filter and then create new dataframe to create new tab in xls 
-reachable_filter = (final['active']==True) & (final['MEI']>=25)
+reachable_filter = (final['active']==True) & (final['MEI']>=20)
 reachable_df = final[reachable_filter].sort_values("MEI", inplace = False, ascending=False)
 
-not_reachable_filter = (final['MEI']<25) & (final['active']==True)
+not_reachable_filter = (final['MEI']<20) & (final['active']==True)
 not_reachable_df = final[not_reachable_filter].sort_values('MEI', inplace=False, ascending=False)
 
 # No matches can also be duplicates so need to figure out a way that eliminates the duplicate rows from no match tab
