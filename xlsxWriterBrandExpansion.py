@@ -5,6 +5,7 @@
 ### into the variable 'f2' below.
 
 import pandas as pd
+import os 
 # import sys  
 
 # Changed default string encoding from 'ascii' to 'utf8'
@@ -14,7 +15,7 @@ import pandas as pd
 ### READ CSV 
 
 # Match filename
-f = "Autodesk FY19 PDM Target Accounts _2018-09-17_131478_output.csv"
+f = "TOPCON Ads List 19Nov2018_2018-11-19_137399_output.csv"
 
 # Create dataframe for entire match file to obtain number of columns(length).
 matchfile_df = pd.read_csv(f, skiprows=None)
@@ -58,7 +59,7 @@ duplicates_df = df[((df['Match Type'] == 'duplicate input') | (df['Match Type'] 
 
 
 # Drop unwanted columns in each dataframe
-cols = ['active', 'Match Type', 'Match Result']
+cols = ['active', 'Match Type','Match Result']
 reachable_df = reachable_df.drop(columns = cols)
 not_reachable_df = not_reachable_df.drop(columns = cols)
 no_match_df = no_match_df.drop(columns = cols)
@@ -69,7 +70,7 @@ duplicates_df = duplicates_df.drop(columns = cols)
 ### WRITE XLSX
 
 # Excel filename
-f2 = 'Autodesk FY19 PDM Target Accounts _2018-09-17_131478_output.xlsx'
+f2 = 'TOPCON Ads List 19Nov2018_2018-11-19_137399_output.xlsx'
 
 os.chdir('/Users/jshek/Desktop/completedxls')
 
